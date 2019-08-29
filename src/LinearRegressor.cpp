@@ -29,14 +29,17 @@ void LinearRegressor::train(vector< vector<float> > X_train,vector<float> y_trai
         long nrows=X_train.size();
         for(int i=1;i<=epochs;i++)
         {
-            vector<float> sum(nrows,0);
+            vector<float> sum(number_of_variables,0);
             for(int j=0;j<nrows;j++)
             {
 
                 for(int k=0;k<number_of_variables;k++)
                 {
-
-                    sum[k]+=((h_theta(X_train[j])-y_train[j])/nrows)*X_train[j][k];
+                    if(k==0){
+                        sum[k]+=((h_theta(X_train[j])-y_train[j])/nrows);
+                    }else{
+                        sum[k]+=((h_theta(X_train[j])-y_train[j])/nrows)*X_train[j][k-1];
+                    }
                 }
             }
             for(int j=0;j<number_of_variables;j++)
