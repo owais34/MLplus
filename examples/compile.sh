@@ -11,6 +11,11 @@
 g++ linearRegEx.cpp -I ../src/ -lMLplus
 
 # Operating system run time linking
-# $ ldd executable shows the list of shared libraries used by the binary and their resolved path
+# directories listed in the LD_LIBRARY_PATH environment variable
+# directories listed in the executable's rpath;
+# directories on the system search path, which (on Linux at least) consists of
+# the entries in /etc/ld.so.conf plus /lib and /usr/lib.
+# $ ldd executable shows the list of shared libraries used by the binary and their
+# resolved path
 # LD_LIBRARY_PATH=$LD_LIBRARY_PATH:../build/src/
 # export LD_LIBRARY_PATH
