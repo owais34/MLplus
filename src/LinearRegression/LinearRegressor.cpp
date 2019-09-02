@@ -18,9 +18,9 @@ void LinearRegressor::train(arma::mat X_train, arma::mat y_train, float alpha, i
         arma::mat x = X_train;
         x.insert_cols(0, arma::ones<arma::mat>(X_train.n_rows, 1));
         for(int i=1;i<=epochs;i++)
-        {
-            arma::mat delta_weight = x.t() * (y_train - predict(X_train));
-            weights -= delta_weight;
-            cout<<"Epoch completed = "<<i<<endl;
+        {   
+            arma::mat delta_weight = x.t() * (predict(X_train)-y_train);
+            weights -= ((alpha * delta_weight)/X_train.n_rows);
+            cout<<"Epoch completed = "<<i<<" Weights "<<weights<<endl;
         }
 }
