@@ -1,24 +1,12 @@
-# Define the files we need to compile.
-# Anything not in this list will not be compiled into MLplus.
-set(SOURCES
-    LinearRegressor.cpp
+set(MLPLUS_SRCS)
+
+set(DIRS
+    LinearRegression
 )
 
-set(HEADERS
-    LinearRegressor.hpp
-)
-
-# Add directory name to sources.
-set(DIR_SRCS)
-
-foreach(file ${SOURCES})
-  set(DIR_SRCS ${DIR_SRCS} ${CMAKE_CURRENT_SOURCE_DIR}/${file})
+foreach(dir ${DIRS})
+    add_subdirectory(${dir})
 endforeach()
-
-# Append sources (with directory name) to list of all MLplus sources (used at
-# the parent scope).
-# set(MLPLUS_SRCS ${MLPLUS_SRCS} ${DIR_SRCS} PARENT_SCOPE) #### Investigate further later!
-set(MLPLUS_SRCS ${MLPLUS_SRCS} ${DIR_SRCS})
 
 add_library(MLplus SHARED ${MLPLUS_SRCS})
 
@@ -32,14 +20,34 @@ set_target_properties(MLplus
         SOVERSION ${MLPLUS_VERSION_MAJOR}
 )
 
-# Refer mlpack/src/mlpack/CMakeLists.txt line#70
-install(DIRECTORY ${CMAKE_BINARY_DIR}/include/MLplus DESTINATION /usr/include/MLplus/
-    FILES_MATCHING PATTERN "*.h"
+# Collect all header files in the library.
+# file(GLOB_RECURSE INCLUDE_H_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.h)
+file(GLOB_RECURSE INCLUDE_HPP_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.hpp)
+set(INCLUDE_FILES ${INCLUDE_HPP_FILES})
+
+# Move all of these header files to <builddir>/include/mlpack/ after the library
+# is built.  First we have to create that directory though.
+add_custom_target(MLplus_headers)
+add_custom_command(TARGET MLplus_headers POST_BUILD
+  COMMAND ${CMAKE_COMMAND} ARGS -E
+    make_directory ${CMAKE_BINARY_DIR}/include/MLplus/
+)
+
+# Then copy each of the header files over to that directory.
+foreach(incl_file ${INCLUDE_FILES})
+  add_custom_command(TARGET MLplus_headers POST_BUILD
+    COMMAND ${CMAKE_COMMAND} ARGS -E
+      copy ${CMAKE_CURRENT_SOURCE_DIR}/${incl_file}
+           ${CMAKE_BINARY_DIR}/include/MLplus/${incl_file}
+      BYPRODUCTS ${CMAKE_BINARY_DIR}/include/MLplus/${incl_file})
+endforeach()
+
+install(DIRECTORY ${CMAKE_BINARY_DIR}/include/MLplus 
+    DESTINATION /usr/local/include
 )
 
 install(TARGETS MLplus
-    LIBRARY DESTINATION /usr/lib/MLplus/
+    LIBRARY DESTINATION /usr/local/lib/MLplus/
 )
 
-message(STATUS "cmake_current_source_dir is ${CMAKE_CURRENT_SOURCE_DIR}")
-message(STATUS "cmake_binary_dir is ${CMAKE_BINARY_DIR}")
+add_dependencies(MLplus MLplus_headers)
