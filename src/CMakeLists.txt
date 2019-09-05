@@ -2,12 +2,14 @@ set(MLPLUS_SRCS)
 
 set(DIRS
     LinearRegression
+    LogisticRegression
 )
 
 foreach(dir ${DIRS})
     add_subdirectory(${dir})
 endforeach()
 
+message(STATUS "MLplus sources are ${MLPLUS_SRCS}")
 add_library(MLplus SHARED ${MLPLUS_SRCS})
 
 set(MLPLUS_VERSION_MAJOR 0)
