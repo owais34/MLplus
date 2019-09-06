@@ -49,7 +49,7 @@ install(DIRECTORY ${CMAKE_BINARY_DIR}/include/MLplus
 )
 
 install(TARGETS MLplus
-    LIBRARY DESTINATION /usr/local/lib/MLplus/
+    LIBRARY DESTINATION /usr/local/lib/
 )
 
 add_dependencies(MLplus MLplus_headers)
