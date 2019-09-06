@@ -15,13 +15,7 @@ int main()
     for(int i=0;i<1000;i++)
     {
         X_train(i, 0) = i;
-        if(i<500)
-        y_train(i, 0) = 1;
-        else
-        {
-            y_train(i,0)=0;
-        }
-        
+        y_train(i, 0) = (i < 500) ? 1 : 0;
     }
     model.train(X_train,y_train,alpha,epochs);
 
