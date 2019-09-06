@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#include "../src/LinearRegression/LinearRegressor.hpp"
+#include "MLplus/LinearRegression/LinearRegressor.hpp"
 
 using namespace std;
 

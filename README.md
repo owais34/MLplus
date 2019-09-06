@@ -7,6 +7,7 @@ Compiling adn installing MLplus
 $ git clone https://github.com/owais34/MLplus.git
 $ cd MLplus
 $ mkdir build
+$ cd build
 $ cmake ../
 $ make
 $ sudo make install
