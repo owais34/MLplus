@@ -2,12 +2,12 @@
 #include <armadillo>
 
 using namespace std;
-class LogisticRegressor{
+class LogisticRegression{
     public:
     int number_of_variables;
     arma::Col<double> weights;
 
-    LogisticRegressor(int num);
+    LogisticRegression(int num);
 
     void train(arma::mat X_train, arma::mat y_train, float alpha, int epochs);
 

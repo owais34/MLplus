@@ -1,11 +1,11 @@
 #include <bits/stdc++.h>
-#include <MLplus/LogisticRegression/LogisticRegression.hpp>
+#include <MLplus/logistic_regression/logistic_regression.hpp>
 
 using namespace std;
 
 int main()
 {
-    LogisticRegressor model(1);
+    LogisticRegression model(1);
     double alpha;
     int epochs;
     cout<<"alpha and epochs ,choose alpha less than .05 \n";

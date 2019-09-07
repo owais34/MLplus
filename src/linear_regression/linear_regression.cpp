@@ -1,26 +1,21 @@
-#include <bits/stdc++.h>
-#include "LogisticRegression.hpp"
+#include <iostream>
+#include "linear_regression.hpp"
 
 using namespace std;
 //constructor to initialize number of dependent variables
-LogisticRegressor::LogisticRegressor(int num){
+LinearRegression::LinearRegression(int num){
     number_of_variables = num;
-    weights = arma::randu<arma::mat>(number_of_variables + 1, 1);
+    weights = arma::mat(number_of_variables + 1, 1);// arma::randu<arma::mat>(number_of_variables + 1, 1);
+    weights.randu();
 }
 
-arma::mat LogisticRegressor::predict(arma::mat X_predict){
+arma::mat LinearRegression::predict(arma::mat& X_predict){
     arma::mat x = X_predict;
     x.insert_cols(0, arma::ones<arma::mat>(X_predict.n_rows, 1));
-    arma::mat regpred = x * weights;
-    
-    for(int i=0;i<X_predict.n_rows;i++)
-    {
-        regpred(i,0)=(1/(1+exp(-regpred(i,0))));
-    }
-    return regpred;
+    return x * weights;
 }
 
-void LogisticRegressor::train(arma::mat X_train, arma::mat y_train, float alpha, int epochs){
+void LinearRegression::train(arma::mat& X_train, arma::mat& y_train, float alpha, int epochs){
         arma::mat x = X_train;
         x.insert_cols(0, arma::ones<arma::mat>(X_train.n_rows, 1));
         for(int i=1;i<=epochs;i++)

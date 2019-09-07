@@ -1,7 +1,7 @@
 # Define the files we need to compile.
 # Anything not in this list will not be compiled into MLplus.
 set(SOURCES
-    LinearRegressor.cpp
+    logistic_regression.cpp
 )
 
 # Add directory name to sources.
