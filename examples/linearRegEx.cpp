@@ -1,11 +1,11 @@
 #include <bits/stdc++.h>
-#include "MLplus/LinearRegression/LinearRegressor.hpp"
+#include "MLplus/linear_regression/linear_regression.hpp"
 
 using namespace std;
 
 int main()
 {
-    LinearRegressor model(1);
+    LinearRegression model(1);
     double alpha;
     int epochs;
     cout<<"alpha and epochs ,choose alpha less than .05 \n";
@@ -17,7 +17,7 @@ int main()
         X_train(i, 0) = i;
         y_train(i, 0) = (2 * i);
     }
-    model.train(X_train,y_train,alpha,epochs);
+    model.train(X_train, y_train, alpha, epochs);
 
     arma::mat out=model.predict(X_train);
     cout<<out<<endl;

@@ -1,8 +1,8 @@
 set(MLPLUS_SRCS)
 
 set(DIRS
-    LinearRegression
-    LogisticRegression
+    linear_regression
+    logistic_regression
 )
 
 foreach(dir ${DIRS})
