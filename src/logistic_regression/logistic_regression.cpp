@@ -16,7 +16,7 @@ arma::mat LogisticRegression::predict(arma::mat X_predict){
     
     for(int i=0;i<X_predict.n_rows;i++)
     {
-        regpred(i,0)=(1/(1+exp(regpred(i,0))));
+        regpred(i,0)=(1/(1+exp(-regpred(i,0))));
     }
     return regpred;
 }
