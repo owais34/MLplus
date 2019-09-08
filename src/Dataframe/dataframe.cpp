@@ -108,11 +108,16 @@ class Dataframe
     }
 	fin.close(); 
 	}
-	print(int rows)
+	void print(int rows)
 	{
 		for(int i=0;i<header.size();i++)
 		{
 			if(!istext[i])
+			cout<<header[i]<<"  |";
+		}
+		for(int i=0;i<header.size();i++)
+		{
+			if(istext[i])
 			cout<<header[i]<<"  |";
 		}
 		cout<<endl;
@@ -122,8 +127,13 @@ class Dataframe
 			{
 				cout<<data[i].numeric[j]<<"  |";
 			}
+			for (int j = 0; j < data[i].text.size(); j++)
+			{
+				cout<<data[i].text[j]<<"   |";
+			}
 			cout<<endl;
 		}
+
 	}
 };
 int main()
