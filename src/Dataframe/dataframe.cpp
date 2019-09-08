@@ -113,23 +113,26 @@ class Dataframe
 		for(int i=0;i<header.size();i++)
 		{
 			if(!istext[i])
-			cout<<header[i]<<"  |";
+			cout<<setw(10)<<header[i]<<"|";
 		}
 		for(int i=0;i<header.size();i++)
 		{
 			if(istext[i])
-			cout<<header[i]<<"  |";
+			cout<<setw(10)<<header[i]<<"|";
 		}
+		cout<<endl;
+		for(int i=0;i<header.size()*11;i++)
+		cout<<"-";
 		cout<<endl;
 		for(int i=0;i<rows;i++)
 		{
 			for(int j=0;j<data[i].numeric.size();j++)
 			{
-				cout<<data[i].numeric[j]<<"  |";
+				cout<<setw(10)<<data[i].numeric[j]<<"|";
 			}
 			for (int j = 0; j < data[i].text.size(); j++)
 			{
-				cout<<data[i].text[j]<<"   |";
+				cout<<setw(10)<<data[i].text[j]<<"|";
 			}
 			cout<<endl;
 		}
@@ -142,7 +145,6 @@ int main()
  	cin>>s;
 	Dataframe d1(s,',');
 	d1.print(30);
-	cout<<d1.header.size()<<endl;
 	
 	return 0;
 }
