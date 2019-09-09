@@ -1,5 +1,8 @@
 #include<vector>
 #include<string>
+#include<iomanip>
+#include<unordered_map>
+
 //#ifndef ARMADILLO  //header guard for header file
 //#define ARMADILLO
 #include<armadillo>
@@ -14,7 +17,7 @@ class Rows{
 class Dataframe
 {	public:
 	vector<Rows> data;vector<bool> istext;vector<string> header;
-	arma:mat Matrix;
+	arma::mat Matrix;
 	
 	bool isNumeric(string s)
 	{   int count_dec=0;
@@ -191,7 +194,14 @@ int main()
 	string s;
  	cin>>s;
 	Dataframe d1(s,',');
-	d1.print(30);
+	d1.printDataframe(30);
+	d1.printMatrix(9800);
+	int x;
+	cout<<"Encode the column number"<<endl;
+	cin>>x;
+	d1.integerEncode(x);
+	d1.printMatrix(9800);
+
 	
 	return 0;
 }
