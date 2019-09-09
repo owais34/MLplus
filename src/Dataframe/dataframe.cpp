@@ -15,8 +15,11 @@ class Dataframe
 {	public:
 	vector<Rows> data;vector<bool> istext;vector<string> header;
 	arma:mat Matrix;
+	
 	bool isNumeric(string s)
 	{   int count_dec=0;
+	if(s[0]=='"')
+		s=s.substr(1,s.length()-2);
 		for(int j=0;j<s.length();j++)
 		{
 			if((int)s[j]>=48&&(int)s[j]<=57)
@@ -161,6 +164,26 @@ class Dataframe
 	void printMatrix(int rows)
 	{
 		cout<<Matrix.rows(0,rows-1);
+	}
+	void integerEncode(int column)//column numbering is from 0
+	{
+		unordered_map<string,int > mp;
+		int k=0;column=column-data[0].numeric.size();
+		arma::mat colms=arma::mat(data.size(),1);
+		for(int i=0;i<data.size();i++)
+		{
+			if(mp.find(data[i].text[column])==mp.end())
+			{
+				mp.insert(make_pair(data[i].text[column],k));
+				colms(i,0)=k;k++;
+			}
+			else
+			{
+				colms(i,0)=mp[data[i].text[column]];
+			}
+		}//finished creating encoded column
+		//now appending columns created to global matrix
+		Matrix.insert_cols(0,colms);
 	}
 };
 int main()
