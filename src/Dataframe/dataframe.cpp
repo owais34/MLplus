@@ -1,5 +1,10 @@
-#include<bits/stdc++.h>
+#include<vector>
+#include<string>
+//#ifndef ARMADILLO  //header guard for header file
+//#define ARMADILLO
+#include<armadillo>
 
+//#endif
 using namespace std;
 class Rows{
 	public:
@@ -9,6 +14,7 @@ class Rows{
 class Dataframe
 {	public:
 	vector<Rows> data;vector<bool> istext;vector<string> header;
+	arma:mat Matrix;
 	bool isNumeric(string s)
 	{   int count_dec=0;
 		for(int j=0;j<s.length();j++)
@@ -30,7 +36,7 @@ class Dataframe
 	{
 	
     ifstream fin; 
-  
+  	
     string line; 
     fin.open(&file[0]); 
     int i=0;int num_cols=0;
@@ -106,10 +112,24 @@ class Dataframe
 		}
         i++;
     }
-	fin.close(); 
-	}
-	void print(int rows)
+	fin.close();
+	// Here we initialize arma matrix
+	Matrix=arma::mat(data.size(),data[0].numeric.size());
+	//transferring data from vector to matrix
+	for(int j=0;j<data.size();j++)
 	{
+		for(int k=0;k<data[0].numeric.size();k++)
+		Matrix(j,k)=data[j].numeric[k];
+	}
+	
+	//end of constructor
+	}
+	void printDataframe(int rows)
+	{	for(int i=0;i<header.size();i++)
+		{
+			cout<<setw(10)<<i<<"|";
+		}
+		cout<<endl;
 		for(int i=0;i<header.size();i++)
 		{
 			if(!istext[i])
@@ -137,6 +157,10 @@ class Dataframe
 			cout<<endl;
 		}
 
+	}
+	void printMatrix(int rows)
+	{
+		cout<<Matrix.rows(0,rows-1);
 	}
 };
 int main()
