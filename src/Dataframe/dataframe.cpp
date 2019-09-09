@@ -1,5 +1,10 @@
-#include<bits/stdc++.h>
+#include<vector>
+#include<string>
+//#ifndef ARMADILLO  //header guard for header file
+//#define ARMADILLO
+#include<armadillo>
 
+//#endif
 using namespace std;
 class Rows{
 	public:
@@ -9,8 +14,12 @@ class Rows{
 class Dataframe
 {	public:
 	vector<Rows> data;vector<bool> istext;vector<string> header;
+	arma:mat Matrix;
+	
 	bool isNumeric(string s)
 	{   int count_dec=0;
+	if(s[0]=='"')
+		s=s.substr(1,s.length()-2);
 		for(int j=0;j<s.length();j++)
 		{
 			if((int)s[j]>=48&&(int)s[j]<=57)
@@ -30,7 +39,7 @@ class Dataframe
 	{
 	
     ifstream fin; 
-  
+  	
     string line; 
     fin.open(&file[0]); 
     int i=0;int num_cols=0;
@@ -106,10 +115,24 @@ class Dataframe
 		}
         i++;
     }
-	fin.close(); 
-	}
-	void print(int rows)
+	fin.close();
+	// Here we initialize arma matrix
+	Matrix=arma::mat(data.size(),data[0].numeric.size());
+	//transferring data from vector to matrix
+	for(int j=0;j<data.size();j++)
 	{
+		for(int k=0;k<data[0].numeric.size();k++)
+		Matrix(j,k)=data[j].numeric[k];
+	}
+	
+	//end of constructor
+	}
+	void printDataframe(int rows)
+	{	for(int i=0;i<header.size();i++)
+		{
+			cout<<setw(10)<<i<<"|";
+		}
+		cout<<endl;
 		for(int i=0;i<header.size();i++)
 		{
 			if(!istext[i])
@@ -137,6 +160,30 @@ class Dataframe
 			cout<<endl;
 		}
 
+	}
+	void printMatrix(int rows)
+	{
+		cout<<Matrix.rows(0,rows-1);
+	}
+	void integerEncode(int column)//column numbering is from 0
+	{
+		unordered_map<string,int > mp;
+		int k=0;column=column-data[0].numeric.size();
+		arma::mat colms=arma::mat(data.size(),1);
+		for(int i=0;i<data.size();i++)
+		{
+			if(mp.find(data[i].text[column])==mp.end())
+			{
+				mp.insert(make_pair(data[i].text[column],k));
+				colms(i,0)=k;k++;
+			}
+			else
+			{
+				colms(i,0)=mp[data[i].text[column]];
+			}
+		}//finished creating encoded column
+		//now appending columns created to global matrix
+		Matrix.insert_cols(0,colms);
 	}
 };
 int main()
