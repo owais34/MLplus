@@ -3,8 +3,9 @@
 
 using namespace std;
 //constructor to initialize number of dependent variables
-Naive_bayes::Naive_bayes(int num){
-    number_of_variables = num;
+
+Naive_bayes::Naive_bayes(vector<int> cat_cols){
+    categorical
 	
 }
 
