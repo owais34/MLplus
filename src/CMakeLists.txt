@@ -3,6 +3,8 @@ set(MLPLUS_SRCS)
 set(DIRS
     linear_regression
     logistic_regression
+    dataframe
+    naive_bayes
 )
 
 foreach(dir ${DIRS})

@@ -189,20 +189,21 @@ class Dataframe
 		Matrix.insert_cols(0,colms);
 	}
 };
-int main()
-{	cout<<"Enter file name\n";
-	string s;
- 	cin>>s;
-	Dataframe d1(s,',');
-	d1.printDataframe(30);
-	d1.printMatrix(9800);
-	int x;
-	cout<<"Encode the column number"<<endl;
-	cin>>x;
-	d1.integerEncode(x);
-	d1.printMatrix(9800);
-
-	
-	return 0;
-}
+//Main in random parts of the library could interfere with the compiling of the library binary
+//	int main()
+//	{	cout<<"Enter file name\n";
+//		string s;
+//		cin>>s;
+//		Dataframe d1(s,',');
+//		d1.printDataframe(30);
+//		d1.printMatrix(9800);
+//		int x;
+//		cout<<"Encode the column number"<<endl;
+//		cin>>x;
+//		d1.integerEncode(x);
+//		d1.printMatrix(9800);
+//
+//		
+//		return 0;
+//	}
 
