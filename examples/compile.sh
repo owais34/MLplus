@@ -8,7 +8,7 @@
 # -L for libMLplus.so to be searched in addition of default locations
 # lMLplus to state that linker needs to search libMLplus.so
 # Can check what the linker is doing by $ ld -lMLplus --verbose
-g++ linearRegEx.cpp -I ../src/ -lMLplus -o executable
+g++ linearRegEx.cpp -I ../src/ -lMLplus -larmadillo -o executable
 
 # Operating system run time linking
 # directories listed in the LD_LIBRARY_PATH environment variable

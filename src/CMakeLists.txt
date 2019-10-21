@@ -1,17 +1,15 @@
-set(MLPLUS_SRCS)
+set(MLPLUS_SRCS) #MLPLUS_SRCS is in this file's scope that the files in subdirectories (methods and utils) add the sources using 'PARENT_SCOPE'
 
 set(DIRS
-    linear_regression
-    logistic_regression
-    dataframe
-    naive_bayes
+    methods
+    utils
 )
 
 foreach(dir ${DIRS})
-    add_subdirectory(${dir})
+    add_subdirectory(${dir}) #At this the subdirectories add the above mentioned sources
 endforeach()
 
-message(STATUS "MLplus sources are ${MLPLUS_SRCS}")
+message(STATUS "<Script message> MLplus sources are ${MLPLUS_SRCS}")
 add_library(MLplus SHARED ${MLPLUS_SRCS})
 
 set(MLPLUS_VERSION_MAJOR 0)
