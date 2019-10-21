@@ -8,7 +8,7 @@ Probability_table::Probability_table(int rows,int cols)
 {
 	table=arma::mat (rows,cols);
 }
-Probability_table::view()
+void Probability_table::view()
 {
 	cout<<table;
 }
