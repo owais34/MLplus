@@ -5,12 +5,12 @@
 using namespace std;
 //constructor to initialize number of dependent variables
 
-Naive_bayes::Naive_bayes(vector<int> cat_cols){
+Naive_bayes::Naive_bayes(int num, vector<int> cat_cols){
     //categorical
 }
 
 arma::mat Naive_bayes::predict(arma::mat X_predict){
-    //
+    arma::mat regpred;
     return regpred;
 }
 
