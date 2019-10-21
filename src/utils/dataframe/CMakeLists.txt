@@ -1,8 +1,7 @@
 # Define the files we need to compile.
 # Anything not in this list will not be compiled into MLplus.
 set(SOURCES
-    naive_bayes.cpp
-    prob_table.cpp
+    dataframe.cpp
 )
 
 # Add directory name to sources.
@@ -14,5 +13,5 @@ endforeach()
 
 # Append sources (with directory name) to list of all MLplus sources (used at
 # the parent scope).
-set(MLPLUS_SRCS ${MLPLUS_SRCS} ${DIR_SRCS} PARENT_SCOPE) #### Investigate further later!
+set(MLPLUS_SRCS_UTILS ${MLPLUS_SRCS_UTILS} ${DIR_SRCS} PARENT_SCOPE) #### Investigate further later!
 # set(MLPLUS_SRCS ${MLPLUS_SRCS} ${DIR_SRCS})
