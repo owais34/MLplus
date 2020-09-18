@@ -10,10 +10,36 @@
 # Can check what the linker is doing by $ ld -lMLplus --verbose
 g++ linearRegEx.cpp -I ../src/ -lMLplus -larmadillo -o executable
 
+# LD_LIBRARY_PATH
 # Operating system run time linking
 # directories listed in the LD_LIBRARY_PATH environment variable
 # directories listed in the executable's rpath;
-# directories on the system search path, which (on Linux at least) consists of the entries in /etc/ld.so.conf plus /lib and /usr/lib.
+# directories on the system search path, which (on Linux at least) consists of the
+# entries in /etc/ld.so.conf plus /lib and /usr/lib.
 # $ ldd executable shows the list of shared libraries used by the binary and their resolved path
 # LD_LIBRARY_PATH=$LD_LIBRARY_PATH:../build/src/
 # export LD_LIBRARY_PATH
+# It is used by your program to search directories containing shared libraries after it has been
+# successfully compiled and linked
+# Note: when linking libraries, ld by itself does not look for libraries in either LIBRARY_PATH or LD_LIBRARY_PATH.
+# It's only when gcc invokes ld that LIBRARY_PATH becomes used
+
+# CPATH; C_INCLUDE_PATH; CPLUS_INCLUDE_PATH
+# Each variable's value is a list of directories separated by a special character, much like PATH,
+# in which to look for header files.
+# The special character, PATH_SEPARATOR, is target-dependent and determined at GCC build time.
+# For Microsoft Windows-based targets it is a semicolon, and for almost all other targets it is a colon.
+# CPATH specifies a list of directories to be searched as if specified with -I,
+# but after any paths given with -I options on the command line.
+# This environment variable is used regardless of which language is being preprocessed.
+# The remaining environment variables apply only when preprocessing the particular language indicated.
+# In all these variables, an empty element instructs the compiler to search its current working directory.
+# Empty elements can appear at the beginning or end of a path.
+# For instance, if the value of CPATH is :/special/include, that has the same effect as ‘-I. -I/special/include’. 
+
+# LIBRARY_PATH
+# It is used by gcc before compilation to search directories containing static and
+# shared libraries that need to be linked to your program.
+# The value of LIBRARY_PATH is a colon-separated list of directories, much like PATH.
+# Linking using GCC also uses these directories when searching for ordinary
+# libraries for the -l option (but directories specified with -L come first). 
