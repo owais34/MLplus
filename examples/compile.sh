@@ -22,6 +22,10 @@ g++ linearRegEx.cpp -I ../src/ -lMLplus -larmadillo -o executable
 # In all these variables, an empty element instructs the compiler to search its current working directory.
 # Empty elements can appear at the beginning or end of a path.
 # For instance, if the value of CPATH is :/special/include, that has the same effect as ‘-I. -I/special/include’. 
+# CPATH specifies the list of directories to search. The compiler searches exactly those directories,
+# not any sub-directories (so no recursive searching). That is, given a name from #include "somedir/header.h",
+# it will look in the directories specified via -I and -isystem and specified via CPATH and
+# will add /somedir/header.h to each of those entries — and that's all
 
 # LIBRARY_PATH
 # It is used by gcc before compilation to search directories containing static and

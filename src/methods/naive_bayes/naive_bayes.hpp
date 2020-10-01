@@ -4,7 +4,7 @@
 using namespace std;
 
 class Naive_bayes{
-    public:
+public:
     int number_of_variables;
 	vector<int> categorical_cols;
 	vector<int> cont_cols;
