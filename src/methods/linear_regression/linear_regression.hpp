@@ -1,6 +1,7 @@
 #include <armadillo>
 
 using namespace std;
+
 class LinearRegression{
     public:
     int number_of_variables;
