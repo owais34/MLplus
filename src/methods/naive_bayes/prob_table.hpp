@@ -4,9 +4,11 @@
 using namespace std;
 
 class Probability_table{
-    public:
+public:
     int rows,cols;
     arma::mat table;
+    
+    //Member functions
     Probability_table(int rows,int cols);
     void view();
 };
