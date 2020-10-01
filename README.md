@@ -8,9 +8,7 @@ $ git clone https://github.com/owais34/MLplus.git
 $ cd MLplus
 $ mkdir build
 $ cd build
-$ cmake ../
-$ make
-$ sudo make install
+$ cmake ../ && make && sudo make install
 ```
 Compiling your binary with MLplus
 ```
