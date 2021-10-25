@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <armadillo>
 #include "logistic_regression.hpp"
 
 using namespace std;
@@ -19,6 +20,10 @@ arma::mat LogisticRegression::predict(arma::mat X_predict){
         regpred(i,0)=(1/(1+exp(-regpred(i,0))));
     }
     return regpred;
+}
+
+arma::mat LogisticRegression::getMatrix() {
+	return X_mat;
 }
 
 void LogisticRegression::train(arma::mat X_train, arma::mat y_train, float alpha, int epochs){
