@@ -9,6 +9,10 @@ foreach(dir ${DIRS})
     add_subdirectory(${dir}) #At this the subdirectories add the above mentioned sources
 endforeach()
 
+foreach(dir ${SUBDIRS})
+    add_subdirectory(${SUBDIRS}) #At this the subdirectories add the above mentioned sources
+endforeach()
+
 message(STATUS "<Script message> MLplus sources are ${MLPLUS_SRCS}")
 add_library(MLplus SHARED ${MLPLUS_SRCS})
 
