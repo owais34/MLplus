@@ -14,15 +14,15 @@ using namespace std;
 class Dataframe
 {	
 	bool isNumeric(string s){
-		int count_dec=0;
-		if(s[0]=='"')
-		s=s.substr(1,s.length()-2);
-		for(int j=0;j<s.length();j++){
-			if((int)s[j]>=48&&(int)s[j]<=57){
+		int count_dec = 0;
+		if(s[0] == '"')
+		s = s.substr(1, s.length() - 2);
+		for(int j = 0; j < s.length(); j++){
+			if((int)s[j] >= 48 && (int)s[j] <= 57){
 				continue;
 			}
-			else if(s[j]=='.'&&count_dec<=1){
-				count_dec++;continue;
+			else if(s[j] == '.' && count_dec <= 1){
+				count_dec++; continue;
 			}
 			else
 			return false;
@@ -31,26 +31,27 @@ class Dataframe
 	}
 	
 	//in csv format
-	Dataframe(string file,char delimiter){
+	Dataframe(string file, char delimiter){
 	    ifstream fin;
   		string line; 
 	    fin.open(&file[0]); 
-    	int i=0;int num_cols=0;
+    	int i = 0;
+	int num_cols = 0;
 	    while(fin){ 
     	    // Read a Line from standard input 
     	    getline(fin, line);
-			line=line+","; 
+			line = line + ","; 
     	    //line contains data 
-    	    if(i==0){
-    	    	string word="";
-    	    	for(int j=0;j<line.length();j++){
-    	    		if(line[j]==delimiter||line[j]=='\n'){
-    	    			if(word!="")
+    	    if(i == 0){
+    	    	string word = "";
+    	    	for(int j = 0; j < line.length(); j++){
+    	    		if(line[j] == delimiter || line[j] == '\n'){
+    	    			if(word != "")
     	    			header.push_back(word);
-    	    			word="";
+    	    			word = "";
 					}
 					else
-					word=word+line[j];
+					word = word + line[j];
 				}
 				
 			}

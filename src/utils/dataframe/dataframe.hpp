@@ -6,11 +6,13 @@ class Rows{
 	public:
 	vector<string> text;
 	vector<float> numeric;
+	vector<int> theAss;
 };
 
 class Dataframe{
 public:
-	vector<Rows> data;vector<bool> istext;vector<string> header;
+	vector<Rows> data;vector<bool> istext;
+	vector<string> header;
 	arma::mat Matrix;
 	
 	//Member functions
@@ -19,4 +21,5 @@ public:
 	void printDataframe(int rows);
 	void printMatrix(int rows);
 	void integerEncode(int column);
+	vector<int> getAss();
 }
